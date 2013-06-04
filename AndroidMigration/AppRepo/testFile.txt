@@ -1,0 +1,2 @@
+Factorial_Calculator
+C:\AndroidMigration\AppRepo\FactorialCalculator\Factorial_Calculator.apk
