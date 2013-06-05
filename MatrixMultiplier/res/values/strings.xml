@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="app_name">MatrixMultiplier</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="buttonRun">Multiply Matrices</string>
+    <string name="StartTime">Start Time is :</string>
+    <string name="FinishTime">Finish Time is :</string>
+    <string name="buttonRunOnCloud">Execute on Cloud</string>
+    <string name="title_activity_calculate_result_matrix">CalculateResultMatrix</string>
+    <string name="numberOfRowsAndColumns">Number of Rows and Columns</string>
+    <string name="sizeOfMatrixHint">Enter N</string>
+    <string name="Ndefinition">N= Number of Rows/Columns</string>
+    <string name="localExecution">Execute on Device</string>
+    <string name="timeDifference">Toal Time required =</string>
+    <string name="blankString"></string>
+
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BestFileEditor</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="searchStringPrompt">Enter Search String</string>
+    <string name="searchResult"></string>
+    <string name="serachResultIs">"Search result is : "</string>
+    <string name="searchCommand">Search</string>
+    <string name="searchLocally">Search Locally</string>
+    <string name="searchUsingCloud">Search Using Cloud</string>
+    <string name="startTime">Start TIme  :</string>
+    <string name="FinishTime">Wrk Finished At :</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="emptyString"></string>
+
+</resources>

@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textViewStartTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:ignore="SelectableText" />
+
+    <TextView
+        android:id="@+id/textViewFinishTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView4"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="17dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:ignore="SelectableText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewStartTimeValue"
+        android:layout_alignRight="@+id/textView4"
+        android:text="@string/StartTime"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewFinishTimeValue"
+        android:layout_below="@+id/textViewStartTimeValue"
+        android:layout_marginTop="60dp"
+        android:text="@string/FinishTime"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignLeft="@+id/textView3"
+        android:text="@string/Ndefinition"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/textFieldValueOfN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/ButtonCloudExecution"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="@string/sizeOfMatrixHint"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ButtonCloudExecution"
+        android:layout_alignBottom="@+id/ButtonCloudExecution"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/ButtonCloudExecution"
+        android:onClick="localExecution"
+        android:text="@string/localExecution" />
+
+    <TextView
+        android:id="@+id/textViewTimeRequired1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewFinishTimeValue"
+        android:layout_below="@+id/textViewFinishTimeValue"
+        android:text="@string/blankString"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/ButtonCloudExecution"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignLeft="@+id/textView4"
+        android:onClick="cloudExecution"
+        android:text="@string/buttonRunOnCloud" />
+
+</RelativeLayout>

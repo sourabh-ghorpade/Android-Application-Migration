@@ -1,3 +1,18 @@
+/*
+ * Copyright 2013 Sourabh Ghorpade
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/   
 package org.applicationMigrator.serverAgent;
 
 import java.io.File;
@@ -6,8 +21,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.directory.InvalidAttributeValueException;
 
 import org.applicationMigrator.serverAgent.communication.ServerSocketConnection;
 
@@ -66,7 +79,7 @@ public class ServerAgentHome extends Activity implements Runnable
     }
 
     private List<String> getDataFiles(Intent intent) throws IOException,
-	    InterruptedException, InvalidAttributeValueException
+	    InterruptedException
     {
 	List<String> outputFilesPathsList = new ArrayList<String>();
 	String outputFilesPaths[] = intent
@@ -76,7 +89,7 @@ public class ServerAgentHome extends Activity implements Runnable
 	String applicationName = intent.getStringExtra(APPLICATION_NAME);
 	String userName = intent.getStringExtra(USERNAME);
 	if (applicationName == null || userName == null)
-	    throw new InvalidAttributeValueException();
+	    throw new IOException("No such Application or User");
 	ServerAgentFileTransferClient fileTransferClient = new ServerAgentFileTransferClient(
 		applicationName, userName);
 	fileTransferClient.downloadFiles(outputFilesPaths,

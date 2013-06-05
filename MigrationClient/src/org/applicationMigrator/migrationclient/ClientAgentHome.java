@@ -1,10 +1,22 @@
+/*
+ * Copyright 2013 Sourabh Ghorpade
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/   
 package org.applicationMigrator.migrationclient;
 
 import java.io.IOException;
 import java.util.List;
-
-import javax.naming.directory.InvalidAttributeValueException;
-import javax.naming.directory.NoSuchAttributeException;
 
 import org.applicationMigrator.exceptions.NonSerializableExtraException;
 import org.applicationMigrator.migrationclient.communication.ClientSocketConnection;
@@ -21,12 +33,11 @@ public class ClientAgentHome extends Activity implements Runnable {
 
 	private static final String DATA_FILES_PATHS = "DATA_FILES_PATHS";
 	private static final String FORCE_UPDATE_VALUE = "FORCE_UPDATE";
-	private static final String CREDENTIALS_FILE_PATH = Environment
-			.getExternalStorageDirectory().getPath()
-			+ "/ApplicationMigrator/AwsCredentials.properties";
+	private static final String CREDENTIALS_FILE_NAME = Environment.getExternalStorageDirectory().getPath() + "/ApplicationMigrator/AwsCredentials.properties";
 	private static final String APPLICATION_NAME = "APP_NAME";
 	private static final String MIGRATE_ACTION = "org.applicationMigrator.migrationClient.executeOnCloud";
-	static final String HOST_NAME = "192.168.204.1";//"ec2-54-251-124-244.ap-southeast-1.compute.amazonaws.com";//"192.168.43.59";//"10.0.2.2";//"192.168.1.5";//;//"192.168.43.59";// "192.168.1.2";//"10.0.2.2";//"192.168.1.4";//"192.168.43.59";//"192.168.1.2";////
+	static final String HOST_NAME = "ec2-54-251-208-2.ap-southeast-1.compute.amazonaws.com";//"192.168.1.2";//"10.0.2.2";//"192.168.1.2";// "10.0.2.2";//"192.168.204.1";//"ec2-54-251-124-244.ap-southeast-1.compute.amazonaws.com";//"192.168.43.59";//"10.0.2.2";//"192.168.1.5";//;//"192.168.43.59";//
+													// "192.168.1.2";//"10.0.2.2";//"192.168.1.4";//"192.168.43.59";//"192.168.1.2";////
 	// "ec2-54-251-110-170.ap-southeast-1.compute.amazonaws.com";
 
 	private static final int PORT_NUMBER = 9090;
@@ -71,13 +82,13 @@ public class ClientAgentHome extends Activity implements Runnable {
 	}
 
 	private Intent migrate() throws IOException, ClassNotFoundException,
-			NonSerializableExtraException, NoSuchAttributeException, InvalidAttributeValueException, InterruptedException {
+			NonSerializableExtraException, InterruptedException {
 
 		String applicationName = recievedIntent
 				.getStringExtra(APPLICATION_NAME);
-		final String ANDROID_ID=Settings.Secure.ANDROID_ID;
+		final String ANDROID_ID = Settings.Secure.ANDROID_ID;
 		FileTransferClient fileTransferClient = new FileTransferClient(
-				applicationName, CREDENTIALS_FILE_PATH,ANDROID_ID);
+				applicationName,CREDENTIALS_FILE_NAME, ANDROID_ID);
 		String[] dataFilesPaths = recievedIntent
 				.getStringArrayExtra(DATA_FILES_PATHS);
 		boolean[] forceUploadValues = recievedIntent
@@ -117,7 +128,7 @@ public class ClientAgentHome extends Activity implements Runnable {
 			clientSocketConnection.sendObjectToServer(packageNameString);
 			clientSocketConnection.sendObjectToServer("DONE");
 			responseObject = clientSocketConnection.getObjectFromServer();
-			
+
 		} catch (Exception e) {
 			Log.e("Error", e.getMessage());
 			return false;
@@ -127,22 +138,21 @@ public class ClientAgentHome extends Activity implements Runnable {
 	}
 
 	private void downloadDataFiles(Intent intent) throws IOException,
-			InterruptedException, InvalidAttributeValueException, ClassNotFoundException {
+			InterruptedException, ClassNotFoundException {
 		String outputFilesPaths[] = intent
 				.getStringArrayExtra(DATA_FILES_PATHS);
 		if (outputFilesPaths == null)
 			return;
 		String applicationName = intent.getStringExtra(APPLICATION_NAME);
 		if (applicationName == null)
-			throw new InvalidAttributeValueException();
-		final String ANDROID_ID=Settings.Secure.ANDROID_ID;
+			throw new IOException("Invalid Name");
+		final String ANDROID_ID = Settings.Secure.ANDROID_ID;
 		FileTransferClient fileTransferClient = new FileTransferClient(
-				applicationName,CREDENTIALS_FILE_PATH,ANDROID_ID);
+				applicationName, CREDENTIALS_FILE_NAME, ANDROID_ID);
 		fileTransferClient.downloadFiles(outputFilesPaths);
 	}
 
 	@Override
-	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_client_agent_home, menu);
 		return true;
