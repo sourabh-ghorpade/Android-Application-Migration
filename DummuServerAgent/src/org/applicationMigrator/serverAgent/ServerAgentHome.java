@@ -12,7 +12,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-*/   
+ */
 package org.applicationMigrator.serverAgent;
 
 import java.io.File;
@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.applicationMigrator.serverAgent.communication.ServerSocketConnection;
+import org.applicationMigrator.serverAgent.enums.FileManagementTasks;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -44,7 +45,7 @@ public class ServerAgentHome extends Activity implements Runnable
     // private static final String FORCE_UPDATE_VALUE = "FORCE_UPDATE";
     private static final String APPLICATION_NAME = "APP_NAME";
     private static final String USERNAME = "userName";
-
+    private String userName;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -87,7 +88,7 @@ public class ServerAgentHome extends Activity implements Runnable
 	if (outputFilesPaths == null)
 	    return outputFilesPathsList;
 	String applicationName = intent.getStringExtra(APPLICATION_NAME);
-	String userName = intent.getStringExtra(USERNAME);
+	userName = intent.getStringExtra(USERNAME);
 	if (applicationName == null || userName == null)
 	    throw new IOException("No such Application or User");
 	ServerAgentFileTransferClient fileTransferClient = new ServerAgentFileTransferClient(
@@ -131,15 +132,17 @@ public class ServerAgentHome extends Activity implements Runnable
 		{
 		    String applicationName = resultIntent
 			    .getStringExtra(APPLICATION_NAME);
-		    ServerAgentFileTransferClient fileTransferClient = new ServerAgentFileTransferClient(
-			    applicationName, ADMIN_CREDENTIALS_PATH);
 		    String[] dataFilesPaths = resultIntent
 			    .getStringArrayExtra(DATA_FILES_PATHS);
 		    boolean[] forceUploadValues = resultIntent
 			    .getBooleanArrayExtra(FORCE_UPDATE_VALUE);
-		    fileTransferClient.uploadFiles(dataFilesPaths,
-			    forceUploadValues, ADMIN_CREDENTIALS_PATH);
-
+		    FileManager fileManager = new FileManager(
+			    FileManagementTasks.UPLOAD, applicationName,
+			    ADMIN_CREDENTIALS_PATH, dataFilesPaths,
+			    forceUploadValues,userName);
+		    Thread fileManagerThread = new Thread(fileManager);
+		    fileManagerThread.start();
+		    fileManagerThread.join();
 		    List<Object> intentParametersList = IntentConverter
 			    .convertIntentToObjects(resultIntent);
 		    String acknowledgementString;

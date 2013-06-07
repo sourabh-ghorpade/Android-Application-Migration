@@ -36,7 +36,7 @@ public class ClientAgentHome extends Activity implements Runnable {
 	private static final String CREDENTIALS_FILE_NAME = Environment.getExternalStorageDirectory().getPath() + "/ApplicationMigrator/AwsCredentials.properties";
 	private static final String APPLICATION_NAME = "APP_NAME";
 	private static final String MIGRATE_ACTION = "org.applicationMigrator.migrationClient.executeOnCloud";
-	static final String HOST_NAME = "ec2-54-251-208-2.ap-southeast-1.compute.amazonaws.com";//"192.168.1.2";//"10.0.2.2";//"192.168.1.2";// "10.0.2.2";//"192.168.204.1";//"ec2-54-251-124-244.ap-southeast-1.compute.amazonaws.com";//"192.168.43.59";//"10.0.2.2";//"192.168.1.5";//;//"192.168.43.59";//
+	static final String HOST_NAME = "ec2-175-41-173-166.ap-southeast-1.compute.amazonaws.com";//"192.168.1.4";//"10.0.2.2";// "ec2-54-251-208-2.ap-southeast-1.compute.amazonaws.com";//"192.168.1.2";//"10.0.2.2";//"192.168.1.2";// "10.0.2.2";//"192.168.204.1";//"ec2-54-251-124-244.ap-southeast-1.compute.amazonaws.com";//"192.168.43.59";//"10.0.2.2";//"192.168.1.5";//;//"192.168.43.59";//
 													// "192.168.1.2";//"10.0.2.2";//"192.168.1.4";//"192.168.43.59";//"192.168.1.2";////
 	// "ec2-54-251-110-170.ap-southeast-1.compute.amazonaws.com";
 

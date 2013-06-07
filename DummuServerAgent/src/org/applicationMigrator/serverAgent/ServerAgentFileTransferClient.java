@@ -207,7 +207,7 @@ public class ServerAgentFileTransferClient {
 		try {
 			s3Client.getObjectMetadata(bucketName, destinationPathString);
 		} catch (AmazonS3Exception s3e) {
-			if (s3e.getStatusCode() == 403) {
+			if (s3e.getStatusCode() == 403 || s3e.getStatusCode() == 404 ) {
 				isValidFile = false;
 			} else {
 				throw s3e; // rethrow all S3 exceptions other than 404

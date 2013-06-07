@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AndroidImageProcessor</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="processImageString">Blur Image</string>
+    <string name="imageViewContentDescriber">imageViewContentDescriber</string>
+    <string name="processImageOnCloud">Blur Image Using Cloud</string>
+    <string name="processImageLocally">Blur Image Locally</string>
+    <string name="errorMessageString">Some Error Occurred :(</string>
+    <string name="title_activity_process_image">ProcessImage</string>
+    <string name="processingImage">Processing Image Please Wait</string>
+    <string name="localProcess">Process Image Locally</string>
+    <string name="cloudProcess">Process Image Locally</string>
+    <string name="processViaCloud">Process Using Cloud</string>
+
+</resources>
